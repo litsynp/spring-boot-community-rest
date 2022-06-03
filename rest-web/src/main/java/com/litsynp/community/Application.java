@@ -1,4 +1,4 @@
-package com.litsynp.restweb;
+package com.litsynp.community;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
