@@ -52,6 +52,7 @@ project(':data-rest') {
         implementation('org.springframework.boot:spring-boot-starter-data-rest') {
             exclude module: 'jackson-databind'
         }
+        implementation 'org.springframework.data:spring-data-rest-hal-explorer'
     }
 }
 
