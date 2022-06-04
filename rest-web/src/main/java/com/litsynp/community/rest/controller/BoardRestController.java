@@ -10,9 +10,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.PagedModel.PageMetadata;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,5 +40,26 @@ public class BoardRestController {
         PagedModel<Board> model = PagedModel.of(boards.getContent(), pageMetadata);
         model.add(linkTo(methodOn(BoardRestController.class).getBoards(pageable)).withSelfRel());
         return ResponseEntity.ok(model);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> postBoard(@RequestBody Board board) {
+        board.setCreatedDateNow();
+        boardRepository.save(board);
+        return new ResponseEntity<>("{}", HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{idx}")
+    public ResponseEntity<?> putBoard(@PathVariable("idx") Long idx, @RequestBody Board board) {
+        Board persistBoard = boardRepository.getOne(idx);
+        persistBoard.update(board);
+        boardRepository.save(persistBoard);
+        return new ResponseEntity<>("{}", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{idx}")
+    public ResponseEntity<?> deleteBoard(@PathVariable("idx") Long idx) {
+        boardRepository.deleteById(idx);
+        return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 }

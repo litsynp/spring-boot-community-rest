@@ -1,10 +1,10 @@
-package com.litsynp.datarest;
+package com.litsynp.community;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class RestWebApplicationTests {
 
     @Test
     void contextLoads() {
