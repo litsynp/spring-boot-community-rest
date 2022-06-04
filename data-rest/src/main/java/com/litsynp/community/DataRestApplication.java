@@ -1,12 +1,12 @@
-package com.litsynp.datarest;
+package com.litsynp.community;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BootRestApplication {
+public class DataRestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BootRestApplication.class, args);
+        SpringApplication.run(DataRestApplication.class, args);
     }
 }
